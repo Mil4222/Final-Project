@@ -33,56 +33,66 @@ print(game_data.isna().sum())
 # pick a random target from the data -> one random country and turn it into a series/column (iloc)
 # this will be hidden for the user ofc
 target = game_data.sample(1).iloc[0]
-print(target)
-print("Target country:", target["country"])
+#print("Target country:", target["country"])
 
-# ask the user to guess a country
-user_guess = input("Guess a country: ").strip()
+# add a loop so the game keeps repeating until the country is guessed
+guessed_correctly = False
 
-# find the corrisponding country in the data and make it case insensitive
-guess = game_data[game_data["country"].str.lower() == user_guess.lower()]
+# add attempts
+attempts = 0
 
-# check if the user enters a valid country
-# if the country is valid it turns it into a series (match target)
-if guess.empty:
-    print("Country not found")
-else:
-    guess = guess.iloc[0]
-    print(guess)
+while not guessed_correctly:
 
-# Now the "structure" of guess and target is the same and we can compare the two
+ # ask the user to guess a country
+ user_guess = input("Guess a country: ").strip()
 
-# compare continent
-if guess["continent"] == target["continent"]:
-    print("continent: correct")
-else:
-    print("continent: wrong")
+ # find the corrisponding country in the data and make it case insensitive
+ guess = game_data[game_data["country"].str.lower() == user_guess.lower()]
 
-# compare population density -> 10% tolerance
-# 10% tolerance because is less frustrating for the user and is more inforamative 
-difference = abs(guess["pop_density"] - target["pop_density"]) # take absolute value of the difference
-tolerance = target["pop_density"] * 0.10 # 10% of the target value
+ # check if the user enters a valid country
+ # if the country is valid it turns it into a series (match target)
+ if guess.empty:
+     print("Country not found")
+     continue
+ else:
+     guess = guess.iloc[0]
+     print(guess)
+     attempts += 1
 
-if difference <= tolerance:
-    print("population density: correct")
-elif guess["pop_density"] < target["pop_density"]:
-    print("population density: higher")
-else:
-    print("population density: lower")
+ # Now the "structure" of guess and target is the same and we can compare the two
 
-# Compare forest coverage -> tolareance of 3 percentage points (for now)
-difference = abs(guess["forest_ratio"] - target["forest_ratio"]) # take absolute value of the difference
-tolerance = 3 # 3 percentage points tolerance
+ # compare continent
+ if guess["continent"] == target["continent"]:
+     print("continent: correct")
+ else:
+     print("continent: wrong")
 
-if difference <= tolerance:
-    print("forest coverage: correct")
-elif guess ["forest_ratio"] < target["forest_ratio"]:
-    print("forest coverage: higher")
-else:
-    print("forest coverage: lower")
+ # compare population density -> 10% tolerance
+ # 10% tolerance because is less frustrating for the user and is more inforamative 
+ difference = abs(guess["pop_density"] - target["pop_density"]) # take absolute value of the difference
+ tolerance = target["pop_density"] * 0.10 # 10% of the target value
 
-# win condition
-if guess["country"] == target["country"]:
-    print("you win!")
-else:
-    print("try again")
+ if difference <= tolerance:
+     print("population density: correct")
+ elif guess["pop_density"] < target["pop_density"]:
+     print("population density: higher")
+ else:
+     print("population density: lower")
+
+ # Compare forest coverage -> tolareance of 3 percentage points (for now)
+ difference = abs(guess["forest_ratio"] - target["forest_ratio"]) # take absolute value of the difference
+ tolerance = 3 # 3 percentage points tolerance
+
+ if difference <= tolerance:
+     print("forest coverage: correct")
+ elif guess ["forest_ratio"] < target["forest_ratio"]:
+     print("forest coverage: higher")
+ else:
+     print("forest coverage: lower")
+
+ # win condition -> if the user guesses correctly, the variable becomes True and the loop stops
+ if guess["country"] == target["country"]:
+     print(f"you win in {attempts} guesses!")
+     guessed_correctly = True
+ else:
+     print("try again")
