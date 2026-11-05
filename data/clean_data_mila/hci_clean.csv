@@ -1,0 +1,602 @@
+iso3,country,year,hci_value
+ALB,Albania,2010,0.544
+ARE,United Arab Emirates,2010,0.621
+ARG,Argentina,2010,0.589
+AUS,Australia,2010,0.755
+AUT,Austria,2010,0.738
+AZE,Azerbaijan,2010,0.497
+BDI,Burundi,2010,0.343
+BEL,Belgium,2010,0.753
+BEN,Benin,2010,0.366
+BFA,Burkina Faso,2010,0.32
+BGR,Bulgaria,2010,0.637
+BHR,Bahrain,2010,0.605
+BRA,Brazil,2010,0.533
+BWA,Botswana,2010,0.368
+CAN,Canada,2010,0.774
+CHE,Switzerland,2010,0.768
+CHL,Chile,2010,0.626
+CIV,Cote d'Ivoire,2010,0.304
+CMR,Cameroon,2010,0.38
+COG,"Congo, Rep.",2010,0.409
+COL,Colombia,2010,0.58
+CRI,Costa Rica,2010,0.598
+CYP,Cyprus,2010,0.686
+CZE,Czechia,2010,0.727
+DEU,Germany,2010,0.761
+DNK,Denmark,2010,0.749
+DZA,Algeria,2010,0.531
+ECU,Ecuador,2010,0.526
+EGY,"Egypt, Arab Rep.",2010,0.479
+ESP,Spain,2010,0.708
+EST,Estonia,2010,0.726
+FIN,Finland,2010,0.817
+FRA,France,2010,0.757
+GBR,United Kingdom,2010,0.765
+GEO,Georgia,2010,0.541
+GMB,"Gambia, The",2010,0.372
+GRC,Greece,2010,0.715
+GTM,Guatemala,2010,0.442
+HKG,"Hong Kong SAR, China",2010,0.781
+HRV,Croatia,2010,0.693
+HUN,Hungary,2010,0.69
+IDN,Indonesia,2010,0.496
+IRL,Ireland,2010,0.766
+IRN,"Iran, Islamic Rep.",2010,0.564
+ISL,Iceland,2010,0.755
+ISR,Israel,2010,0.718
+ITA,Italy,2010,0.75
+JOR,Jordan,2010,0.557
+JPN,Japan,2010,0.816
+KAZ,Kazakhstan,2010,0.594
+KOR,"Korea, Rep.",2010,0.825
+KWT,Kuwait,2010,0.572
+LSO,Lesotho,2010,0.341
+LTU,Lithuania,2010,0.688
+LUX,Luxembourg,2010,0.7
+LVA,Latvia,2010,0.676
+MAC,"Macao SAR, China",2010,0.648
+MAR,Morocco,2010,0.474
+MDA,Moldova,2010,0.556
+MDG,Madagascar,2010,0.389
+MEX,Mexico,2010,0.589
+MKD,North Macedonia,2010,0.538
+MLT,Malta,2010,0.68
+MNE,Montenegro,2010,0.585
+MUS,Mauritius,2010,0.6
+MWI,Malawi,2010,0.364
+MYS,Malaysia,2010,0.584
+NAM,Namibia,2010,0.394
+NLD,Netherlands,2010,0.797
+NOR,Norway,2010,0.771
+NZL,New Zealand,2010,0.779
+OMN,Oman,2010,0.548
+PAN,Panama,2010,0.513
+PER,Peru,2010,0.545
+POL,Poland,2010,0.701
+PRT,Portugal,2010,0.743
+PRY,Paraguay,2010,0.511
+QAT,Qatar,2010,0.591
+ROU,Romania,2010,0.6
+RUS,Russian Federation,2010,0.601
+SAU,Saudi Arabia,2010,0.548
+SEN,Senegal,2010,0.39
+SGP,Singapore,2010,0.847
+SRB,Serbia,2010,0.651
+SVK,Slovak Republic,2010,0.678
+SVN,Slovenia,2010,0.752
+SWE,Sweden,2010,0.762
+SWZ,Eswatini,2010,0.311
+SYC,Seychelles,2010,0.575
+TCD,Chad,2010,0.286
+TGO,Togo,2010,0.368
+THA,Thailand,2010,0.585
+TLS,Timor-Leste,2010,0.411
+TTO,Trinidad and Tobago,2010,0.551
+TUN,Tunisia,2010,0.525
+TUR,Turkiye,2010,0.627
+UGA,Uganda,2010,0.344
+UKR,Ukraine,2010,0.633
+URY,Uruguay,2010,0.591
+USA,United States,2010,0.692
+VNM,Viet Nam,2010,0.657
+ZAF,South Africa,2010,0.425
+ZWE,Zimbabwe,2010,0.41
+AFG,Afghanistan,2017,0.389
+AGO,Angola,2017,0.361
+ALB,Albania,2017,0.621
+ARE,United Arab Emirates,2017,0.659
+ARG,Argentina,2017,0.611
+ARM,Armenia,2017,0.572
+AUS,Australia,2017,0.803
+AUT,Austria,2017,0.793
+AZE,Azerbaijan,2017,0.597
+BDI,Burundi,2017,0.38
+BEL,Belgium,2017,0.757
+BEN,Benin,2017,0.406
+BFA,Burkina Faso,2017,0.369
+BGD,Bangladesh,2017,0.479
+BGR,Bulgaria,2017,0.676
+BHR,Bahrain,2017,0.668
+BIH,Bosnia and Herzegovina,2017,0.618
+BRA,Brazil,2017,0.56
+BWA,Botswana,2017,0.424
+CAN,Canada,2017,0.799
+CHE,Switzerland,2017,0.767
+CHL,Chile,2017,0.674
+CHN,China,2017,0.673
+CIV,Cote d'Ivoire,2017,0.353
+CMR,Cameroon,2017,0.394
+COD,"Congo, Dem. Rep.",2017,0.369
+COG,"Congo, Rep.",2017,0.42
+COL,Colombia,2017,0.593
+COM,Comoros,2017,0.409
+CRI,Costa Rica,2017,0.619
+CYP,Cyprus,2017,0.751
+CZE,Czechia,2017,0.782
+DEU,Germany,2017,0.795
+DNK,Denmark,2017,0.774
+DOM,Dominican Republic,2017,0.492
+DZA,Algeria,2017,0.523
+ECU,Ecuador,2017,0.602
+EGY,"Egypt, Arab Rep.",2017,0.486
+ESP,Spain,2017,0.743
+EST,Estonia,2017,0.747
+ETH,Ethiopia,2017,0.385
+FIN,Finland,2017,0.814
+FRA,France,2017,0.765
+GAB,Gabon,2017,0.453
+GBR,United Kingdom,2017,0.781
+GEO,Georgia,2017,0.614
+GHA,Ghana,2017,0.439
+GIN,Guinea,2017,0.374
+GMB,"Gambia, The",2017,0.397
+GRC,Greece,2017,0.681
+GTM,Guatemala,2017,0.46
+GUY,Guyana,2017,0.495
+HKG,"Hong Kong SAR, China",2017,0.822
+HND,Honduras,2017,0.49
+HRV,Croatia,2017,0.723
+HTI,Haiti,2017,0.446
+HUN,Hungary,2017,0.703
+IDN,Indonesia,2017,0.535
+IND,India,2017,0.44
+IRL,Ireland,2017,0.806
+IRN,"Iran, Islamic Rep.",2017,0.591
+IRQ,Iraq,2017,0.398
+ISL,Iceland,2017,0.74
+ISR,Israel,2017,0.763
+ITA,Italy,2017,0.769
+JAM,Jamaica,2017,0.544
+JOR,Jordan,2017,0.562
+JPN,Japan,2017,0.844
+KAZ,Kazakhstan,2017,0.746
+KEN,Kenya,2017,0.518
+KGZ,Kyrgyz Republic,2017,0.58
+KHM,Cambodia,2017,0.493
+KIR,Kiribati,2017,0.479
+KOR,"Korea, Rep.",2017,0.845
+KWT,Kuwait,2017,0.576
+LAO,Lao PDR,2017,0.452
+LBN,Lebanon,2017,0.538
+LBR,Liberia,2017,0.319
+LKA,Sri Lanka,2017,0.584
+LSO,Lesotho,2017,0.371
+LTU,Lithuania,2017,0.712
+LUX,Luxembourg,2017,0.692
+LVA,Latvia,2017,0.724
+MAC,"Macao SAR, China",2017,0.759
+MAR,Morocco,2017,0.5
+MDA,Moldova,2017,0.58
+MDG,Madagascar,2017,0.374
+MEX,Mexico,2017,0.607
+MKD,North Macedonia,2017,0.534
+MLI,Mali,2017,0.317
+MLT,Malta,2017,0.701
+MMR,Myanmar,2017,0.473
+MNE,Montenegro,2017,0.615
+MNG,Mongolia,2017,0.626
+MOZ,Mozambique,2017,0.361
+MRT,Mauritania,2017,0.353
+MUS,Mauritius,2017,0.626
+MWI,Malawi,2017,0.407
+MYS,Malaysia,2017,0.622
+NAM,Namibia,2017,0.435
+NER,Niger,2017,0.316
+NGA,Nigeria,2017,0.342
+NIC,Nicaragua,2017,0.531
+NLD,Netherlands,2017,0.8
+NOR,Norway,2017,0.771
+NPL,Nepal,2017,0.49
+NZL,New Zealand,2017,0.767
+OMN,Oman,2017,0.622
+PAK,Pakistan,2017,0.389
+PAN,Panama,2017,0.532
+PER,Peru,2017,0.586
+PHL,Philippines,2017,0.548
+PNG,Papua New Guinea,2017,0.384
+POL,Poland,2017,0.747
+PRT,Portugal,2017,0.776
+PRY,Paraguay,2017,0.533
+PSE,West Bank and Gaza,2017,0.554
+QAT,Qatar,2017,0.615
+ROU,Romania,2017,0.601
+RUS,Russian Federation,2017,0.729
+RWA,Rwanda,2017,0.374
+SAU,Saudi Arabia,2017,0.585
+SDN,Sudan,2017,0.379
+SEN,Senegal,2017,0.418
+SGP,Singapore,2017,0.884
+SLB,Solomon Islands,2017,0.443
+SLE,Sierra Leone,2017,0.351
+SLV,El Salvador,2017,0.501
+SRB,Serbia,2017,0.755
+SSD,South Sudan,2017,0.302
+SVK,Slovak Republic,2017,0.694
+SVN,Slovenia,2017,0.788
+SWE,Sweden,2017,0.8
+SWZ,Eswatini,2017,0.409
+SYC,Seychelles,2017,0.678
+TCD,Chad,2017,0.293
+TGO,Togo,2017,0.413
+THA,Thailand,2017,0.604
+TJK,Tajikistan,2017,0.533
+TLS,Timor-Leste,2017,0.434
+TON,Tonga,2017,0.512
+TTO,Trinidad and Tobago,2017,0.613
+TUN,Tunisia,2017,0.508
+TUR,Turkiye,2017,0.626
+TUV,Tuvalu,2017,0.554
+TZA,Tanzania,2017,0.4
+UGA,Uganda,2017,0.382
+UKR,Ukraine,2017,0.647
+URY,Uruguay,2017,0.6
+USA,United States,2017,0.762
+VNM,Viet Nam,2017,0.666
+VUT,Vanuatu,2017,0.471
+XKX,Kosovo,2017,0.56
+YEM,"Yemen, Rep.",2017,0.369
+ZAF,South Africa,2017,0.406
+ZMB,Zambia,2017,0.396
+ZWE,Zimbabwe,2017,0.441
+AFG,Afghanistan,2018,0.393
+AGO,Angola,2018,0.36
+ALB,Albania,2018,0.629
+ARE,United Arab Emirates,2018,0.676
+ARG,Argentina,2018,0.617
+ARM,Armenia,2018,0.582
+ATG,Antigua and Barbuda,2018,0.578
+AUS,Australia,2018,0.781
+AUT,Austria,2018,0.769
+AZE,Azerbaijan,2018,0.629
+BDI,Burundi,2018,0.39
+BEL,Belgium,2018,0.763
+BEN,Benin,2018,0.397
+BFA,Burkina Faso,2018,0.378
+BGD,Bangladesh,2018,0.459
+BGR,Bulgaria,2018,0.67
+BHR,Bahrain,2018,0.664
+BIH,Bosnia and Herzegovina,2018,0.619
+BRA,Brazil,2018,0.546
+BWA,Botswana,2018,0.413
+CAN,Canada,2018,0.8
+CHE,Switzerland,2018,0.766
+CHL,Chile,2018,0.665
+CHN,China,2018,0.647
+CIV,Cote d'Ivoire,2018,0.37
+CMR,Cameroon,2018,0.393
+COD,"Congo, Dem. Rep.",2018,0.365
+COG,"Congo, Rep.",2018,0.418
+COL,Colombia,2018,0.599
+COM,Comoros,2018,0.401
+CRI,Costa Rica,2018,0.603
+CYP,Cyprus,2018,0.755
+CZE,Czechia,2018,0.765
+DEU,Germany,2018,0.764
+DMA,Dominica,2018,0.552
+DNK,Denmark,2018,0.771
+DOM,Dominican Republic,2018,0.507
+DZA,Algeria,2018,0.532
+ECU,Ecuador,2018,0.596
+EGY,"Egypt, Arab Rep.",2018,0.493
+ESP,Spain,2018,0.736
+EST,Estonia,2018,0.774
+ETH,Ethiopia,2018,0.384
+FIN,Finland,2018,0.814
+FRA,France,2018,0.756
+FSM,"Micronesia, Fed. Sts.",2018,0.466
+GAB,Gabon,2018,0.456
+GBR,United Kingdom,2018,0.777
+GEO,Georgia,2018,0.609
+GHA,Ghana,2018,0.443
+GIN,Guinea,2018,0.369
+GMB,"Gambia, The",2018,0.403
+GRC,Greece,2018,0.695
+GRD,Grenada,2018,0.541
+GTM,Guatemala,2018,0.457
+GUY,Guyana,2018,0.494
+HKG,"Hong Kong SAR, China",2018,0.822
+HND,Honduras,2018,0.48
+HRV,Croatia,2018,0.729
+HTI,Haiti,2018,0.445
+HUN,Hungary,2018,0.705
+IDN,Indonesia,2018,0.538
+IND,India,2018,0.485
+IRL,Ireland,2018,0.814
+IRN,"Iran, Islamic Rep.",2018,0.592
+IRQ,Iraq,2018,0.399
+ISL,Iceland,2018,0.743
+ISR,Israel,2018,0.763
+ITA,Italy,2018,0.753
+JAM,Jamaica,2018,0.539
+JOR,Jordan,2018,0.547
+JPN,Japan,2018,0.841
+KAZ,Kazakhstan,2018,0.777
+KEN,Kenya,2018,0.542
+KGZ,Kyrgyz Republic,2018,0.594
+KHM,Cambodia,2018,0.491
+KIR,Kiribati,2018,0.471
+KNA,St. Kitts and Nevis,2018,0.572
+KOR,"Korea, Rep.",2018,0.835
+KWT,Kuwait,2018,0.564
+LAO,Lao PDR,2018,0.457
+LBN,Lebanon,2018,0.525
+LBR,Liberia,2018,0.318
+LCA,St. Lucia,2018,0.589
+LKA,Sri Lanka,2018,0.593
+LSO,Lesotho,2018,0.398
+LTU,Lithuania,2018,0.727
+LUX,Luxembourg,2018,0.692
+LVA,Latvia,2018,0.738
+MAC,"Macao SAR, China",2018,0.763
+MAR,Morocco,2018,0.493
+MDA,Moldova,2018,0.582
+MDG,Madagascar,2018,0.385
+MEX,Mexico,2018,0.612
+MHL,Marshall Islands,2018,0.404
+MKD,North Macedonia,2018,0.535
+MLI,Mali,2018,0.322
+MLT,Malta,2018,0.708
+MMR,Myanmar,2018,0.472
+MNE,Montenegro,2018,0.623
+MNG,Mongolia,2018,0.617
+MOZ,Mozambique,2018,0.355
+MRT,Mauritania,2018,0.371
+MUS,Mauritius,2018,0.623
+MWI,Malawi,2018,0.411
+MYS,Malaysia,2018,0.633
+NAM,Namibia,2018,0.445
+NER,Niger,2018,0.318
+NGA,Nigeria,2018,0.355
+NIC,Nicaragua,2018,0.507
+NLD,Netherlands,2018,0.803
+NOR,Norway,2018,0.769
+NPL,Nepal,2018,0.498
+NZL,New Zealand,2018,0.771
+OMN,Oman,2018,0.611
+PAK,Pakistan,2018,0.399
+PAN,Panama,2018,0.514
+PER,Peru,2018,0.595
+PHL,Philippines,2018,0.549
+PLW,Palau,2018,0.567
+PNG,Papua New Guinea,2018,0.425
+POL,Poland,2018,0.76
+PRT,Portugal,2018,0.783
+PRY,Paraguay,2018,0.528
+PSE,West Bank and Gaza,2018,0.572
+QAT,Qatar,2018,0.635
+ROU,Romania,2018,0.594
+RUS,Russian Federation,2018,0.729
+RWA,Rwanda,2018,0.377
+SAU,Saudi Arabia,2018,0.581
+SDN,Sudan,2018,0.376
+SEN,Senegal,2018,0.421
+SGP,Singapore,2018,0.887
+SLB,Solomon Islands,2018,0.431
+SLE,Sierra Leone,2018,0.353
+SLV,El Salvador,2018,0.545
+SRB,Serbia,2018,0.759
+SSD,South Sudan,2018,0.306
+SVK,Slovak Republic,2018,0.68
+SVN,Slovenia,2018,0.789
+SWE,Sweden,2018,0.803
+SWZ,Eswatini,2018,0.37
+SYC,Seychelles,2018,0.631
+TCD,Chad,2018,0.299
+TGO,Togo,2018,0.421
+THA,Thailand,2018,0.617
+TJK,Tajikistan,2018,0.542
+TLS,Timor-Leste,2018,0.453
+TON,Tonga,2018,0.518
+TTO,Trinidad and Tobago,2018,0.602
+TUN,Tunisia,2018,0.51
+TUR,Turkiye,2018,0.625
+TUV,Tuvalu,2018,0.441
+TZA,Tanzania,2018,0.386
+UGA,Uganda,2018,0.382
+UKR,Ukraine,2018,0.642
+URY,Uruguay,2018,0.602
+USA,United States,2018,0.714
+VCT,St. Vincent and the Grenadines,2018,0.536
+VNM,Viet Nam,2018,0.687
+VUT,Vanuatu,2018,0.445
+WSM,Samoa,2018,0.522
+XKX,Kosovo,2018,0.569
+YEM,"Yemen, Rep.",2018,0.373
+ZAF,South Africa,2018,0.423
+ZMB,Zambia,2018,0.391
+ZWE,Zimbabwe,2018,0.461
+AFG,Afghanistan,2020,0.4
+AGO,Angola,2020,0.362
+ALB,Albania,2020,0.634
+ARE,United Arab Emirates,2020,0.673
+ARG,Argentina,2020,0.602
+ARM,Armenia,2020,0.579
+ATG,Antigua and Barbuda,2020,0.596
+AUS,Australia,2020,0.77
+AUT,Austria,2020,0.747
+AZE,Azerbaijan,2020,0.578
+BDI,Burundi,2020,0.386
+BEL,Belgium,2020,0.76
+BEN,Benin,2020,0.4
+BFA,Burkina Faso,2020,0.384
+BGD,Bangladesh,2020,0.464
+BGR,Bulgaria,2020,0.614
+BHR,Bahrain,2020,0.652
+BIH,Bosnia and Herzegovina,2020,0.58
+BLR,Belarus,2020,0.7
+BRA,Brazil,2020,0.551
+BRN,Brunei Darussalam,2020,0.626
+BTN,Bhutan,2020,0.475
+BWA,Botswana,2020,0.414
+CAF,Central African Republic,2020,0.292
+CAN,Canada,2020,0.798
+CHE,Switzerland,2020,0.756
+CHL,Chile,2020,0.652
+CHN,China,2020,0.653
+CIV,Cote d'Ivoire,2020,0.38
+CMR,Cameroon,2020,0.397
+COD,"Congo, Dem. Rep.",2020,0.366
+COG,"Congo, Rep.",2020,0.419
+COL,Colombia,2020,0.604
+COM,Comoros,2020,0.405
+CRI,Costa Rica,2020,0.629
+CYP,Cyprus,2020,0.756
+CZE,Czechia,2020,0.752
+DEU,Germany,2020,0.751
+DMA,Dominica,2020,0.545
+DNK,Denmark,2020,0.755
+DOM,Dominican Republic,2020,0.503
+DZA,Algeria,2020,0.535
+ECU,Ecuador,2020,0.594
+EGY,"Egypt, Arab Rep.",2020,0.494
+ESP,Spain,2020,0.728
+EST,Estonia,2020,0.777
+ETH,Ethiopia,2020,0.383
+FIN,Finland,2020,0.796
+FJI,Fiji,2020,0.509
+FRA,France,2020,0.763
+FSM,"Micronesia, Fed. Sts.",2020,0.506
+GAB,Gabon,2020,0.458
+GBR,United Kingdom,2020,0.783
+GEO,Georgia,2020,0.569
+GHA,Ghana,2020,0.45
+GIN,Guinea,2020,0.371
+GMB,"Gambia, The",2020,0.422
+GRC,Greece,2020,0.69
+GRD,Grenada,2020,0.565
+GTM,Guatemala,2020,0.461
+GUY,Guyana,2020,0.495
+HKG,"Hong Kong SAR, China",2020,0.813
+HND,Honduras,2020,0.481
+HRV,Croatia,2020,0.71
+HTI,Haiti,2020,0.447
+HUN,Hungary,2020,0.683
+IDN,Indonesia,2020,0.54
+IND,India,2020,0.494
+IRL,Ireland,2020,0.793
+IRN,"Iran, Islamic Rep.",2020,0.593
+IRQ,Iraq,2020,0.408
+ISL,Iceland,2020,0.745
+ISR,Israel,2020,0.734
+ITA,Italy,2020,0.728
+JAM,Jamaica,2020,0.535
+JOR,Jordan,2020,0.553
+JPN,Japan,2020,0.805
+KAZ,Kazakhstan,2020,0.629
+KEN,Kenya,2020,0.547
+KGZ,Kyrgyz Republic,2020,0.597
+KHM,Cambodia,2020,0.492
+KIR,Kiribati,2020,0.493
+KNA,St. Kitts and Nevis,2020,0.586
+KOR,"Korea, Rep.",2020,0.799
+KWT,Kuwait,2020,0.563
+LAO,Lao PDR,2020,0.457
+LBN,Lebanon,2020,0.515
+LBR,Liberia,2020,0.319
+LCA,St. Lucia,2020,0.603
+LKA,Sri Lanka,2020,0.598
+LSO,Lesotho,2020,0.4
+LTU,Lithuania,2020,0.706
+LUX,Luxembourg,2020,0.686
+LVA,Latvia,2020,0.707
+MAC,"Macao SAR, China",2020,0.796
+MAR,Morocco,2020,0.504
+MDA,Moldova,2020,0.584
+MDG,Madagascar,2020,0.392
+MEX,Mexico,2020,0.613
+MHL,Marshall Islands,2020,0.423
+MKD,North Macedonia,2020,0.557
+MLI,Mali,2020,0.318
+MLT,Malta,2020,0.709
+MMR,Myanmar,2020,0.478
+MNE,Montenegro,2020,0.633
+MNG,Mongolia,2020,0.614
+MOZ,Mozambique,2020,0.362
+MRT,Mauritania,2020,0.382
+MUS,Mauritius,2020,0.622
+MWI,Malawi,2020,0.413
+MYS,Malaysia,2020,0.611
+NAM,Namibia,2020,0.446
+NER,Niger,2020,0.316
+NGA,Nigeria,2020,0.361
+NIC,Nicaragua,2020,0.508
+NLD,Netherlands,2020,0.79
+NOR,Norway,2020,0.771
+NPL,Nepal,2020,0.505
+NRU,Nauru,2020,0.508
+NZL,New Zealand,2020,0.776
+OMN,Oman,2020,0.608
+PAK,Pakistan,2020,0.406
+PAN,Panama,2020,0.502
+PER,Peru,2020,0.605
+PHL,Philippines,2020,0.516
+PLW,Palau,2020,0.588
+PNG,Papua New Guinea,2020,0.429
+POL,Poland,2020,0.753
+PRT,Portugal,2020,0.769
+PRY,Paraguay,2020,0.528
+PSE,West Bank and Gaza,2020,0.58
+QAT,Qatar,2020,0.638
+ROU,Romania,2020,0.584
+RUS,Russian Federation,2020,0.681
+RWA,Rwanda,2020,0.38
+SAU,Saudi Arabia,2020,0.576
+SDN,Sudan,2020,0.377
+SEN,Senegal,2020,0.42
+SGP,Singapore,2020,0.879
+SLB,Solomon Islands,2020,0.42
+SLE,Sierra Leone,2020,0.363
+SLV,El Salvador,2020,0.546
+SRB,Serbia,2020,0.677
+SSD,South Sudan,2020,0.307
+SVK,Slovak Republic,2020,0.665
+SVN,Slovenia,2020,0.775
+SWE,Sweden,2020,0.795
+SWZ,Eswatini,2020,0.373
+SYC,Seychelles,2020,0.633
+TCD,Chad,2020,0.3
+TGO,Togo,2020,0.432
+THA,Thailand,2020,0.609
+TJK,Tajikistan,2020,0.504
+TLS,Timor-Leste,2020,0.454
+TON,Tonga,2020,0.531
+TTO,Trinidad and Tobago,2020,0.603
+TUN,Tunisia,2020,0.517
+TUR,Turkiye,2020,0.649
+TUV,Tuvalu,2020,0.448
+TZA,Tanzania,2020,0.39
+UGA,Uganda,2020,0.384
+UKR,Ukraine,2020,0.631
+URY,Uruguay,2020,0.599
+USA,United States,2020,0.702
+UZB,Uzbekistan,2020,0.623
+VCT,St. Vincent and the Grenadines,2020,0.533
+VNM,Viet Nam,2020,0.69
+VUT,Vanuatu,2020,0.455
+WSM,Samoa,2020,0.548
+XKX,Kosovo,2020,0.567
+YEM,"Yemen, Rep.",2020,0.373
+ZAF,South Africa,2020,0.425
+ZMB,Zambia,2020,0.397
+ZWE,Zimbabwe,2020,0.467
