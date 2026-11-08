@@ -44,13 +44,16 @@ game_data = game_data[["country", "continent", "pop_density", "forest_ratio", "a
 # pick a random target from the data -> one random country and turn it into a series/column (iloc)
 # this will be hidden for the user ofc
 target = game_data.sample(1).iloc[0]
-#print("Target country:", target["country"])
+print("Target country:", target["country"])
 
 # add a loop so the game keeps repeating until the country is guessed
 guessed_correctly = False
 
 # add attempts
 attempts = 0
+
+# I want to add a game history table where the user can see the results at the end and compare them
+history = []
 
 while not guessed_correctly:
 
@@ -74,9 +77,11 @@ while not guessed_correctly:
 
  # compare continent
  if guess["continent"] == target["continent"]:
-     print("continent: correct")
+     continent_result = "correct"
  else:
-     print("continent: wrong")
+     continent_result = "wrong"
+
+ print("continent:", continent_result)
 
  # compare population density -> 10% tolerance
  # 10% tolerance because is less frustrating for the user and is more inforamative 
@@ -84,46 +89,59 @@ while not guessed_correctly:
  tolerance = target["pop_density"] * 0.10 # 10% of the target value
 
  if difference <= tolerance:
-     print("population density: correct")
+     density_result = "correct"
  elif guess["pop_density"] < target["pop_density"]:
-     print("population density: higher")
+     density_result = "higher"
  else:
-     print("population density: lower")
+     density_result = "lower"
+
+ print("population density:", density_result)
 
  # Compare forest coverage -> tolareance of 3 percentage points (for now)
  difference = abs(guess["forest_ratio"] - target["forest_ratio"]) # take absolute value of the difference
  tolerance = 3 # 3 percentage points tolerance
 
  if difference <= tolerance:
-     print("forest coverage: correct")
+     forest_result = "correct"
  elif guess ["forest_ratio"] < target["forest_ratio"]:
-     print("forest coverage: higher")
+     forest_result = "higher"
  else:
-     print("forest coverage: lower")
+     forest_result = "lower"
+
+ print("forest coverage:", forest_result)
 
  # Compare area (in square kilometers) -> 10% tolerance
  difference = abs(guess["area_sq_km"] - target["area_sq_km"])
  tolerance = target["area_sq_km"] * 0.10
 
  if difference <= tolerance:
-     print("area: correct")
+     area_result = "correct"
  elif guess["area_sq_km"] < target["area_sq_km"]:
-     print("area: higher")
+     area_result = "higher"
  else:
-     print("area: lower")
+     area_result = "lower"
 
- # compare latitude 
- if target["capital_latitude"] > guess["capital_latitude"]:
+ print("area:", area_result)
+
+ # compare latitude
+ # problem: we need some tolerance also here bc the direction is too precise and can be frustraiting for the user
+ # I don't want minor coordinate differences to produce unintuitive hints -> for now toleranc of 3
+
+ lat_diff = target["capital_latitude"] - guess["capital_latitude"]
+ lon_diff = target["capital_longitude"] - guess["capital_longitude"]
+ tolerance = 3
+
+ if lat_diff > tolerance:
      vertical = "north"
- elif target["capital_latitude"] < guess["capital_latitude"]:
+ elif lat_diff < -tolerance:
      vertical = "south"
  else:
      vertical = ""
 
  # compare longitude
- if target["capital_longitude"] > guess["capital_longitude"]:
+ if lon_diff > tolerance:
      horizontal = "east"
- elif target["capital_longitude"] < guess["capital_longitude"]:
+ elif lon_diff < -tolerance:
      horizontal = "west"
  else:
      horizontal = ""
@@ -140,9 +158,26 @@ while not guessed_correctly:
 
  print("direction:", direction)
 
+ # game history table 
+ history.append({
+     "Attempt": attempts,
+     "Country": guess["country"],
+     "Continent": continent_result,
+     "Population density": density_result,
+     "Forest coverage": forest_result,
+     "Area": area_result,
+     "Direction": direction
+ })
+
  # win condition -> if the user guesses correctly, the variable becomes True and the loop stops
  if guess["country"] == target["country"]:
      print(f"you win in {attempts} guesses!")
      guessed_correctly = True
  else:
      print("try again")
+
+# game history table (easy to use later with streamlit)
+history_df = pd.DataFrame(history)
+
+print("\nGuess history:")
+print(history_df)
