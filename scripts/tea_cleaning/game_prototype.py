@@ -44,7 +44,7 @@ game_data = game_data[["country", "continent", "pop_density", "forest_ratio", "a
 # pick a random target from the data -> one random country and turn it into a series/column (iloc)
 # this will be hidden for the user ofc
 target = game_data.sample(1).iloc[0]
-print("Target country:", target["country"])
+# print("Target country:", target["country"])
 
 # add a loop so the game keeps repeating until the country is guessed
 guessed_correctly = False
