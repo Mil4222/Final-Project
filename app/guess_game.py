@@ -34,7 +34,7 @@ with st.container(border=True):
 if "target" not in st.session_state:
     st.session_state.target = game_data.sample(1).iloc[0]
 
-st.write("target:", st.session_state.target["country"])
+# st.write("target:", st.session_state.target["country"])
 
 # attempts
 if "attempts" not in st.session_state:
