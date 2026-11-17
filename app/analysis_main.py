@@ -26,6 +26,15 @@ SOCIO_VARS = {
     "median_age": "Median age (years)",
     "secondary_edu_years": "Secondary education (years)"}
 
+CONTINENTS = {
+    "AF": "Africa",
+    "AS": "Asia",
+    "EU": "Europe",
+    "NA": "North America",  
+    "SA": "South America",
+    "OC": "Oceania",
+}
+
 # cacheing so the page doesn't have to constanly load
 
 @st.cache_data
@@ -34,6 +43,8 @@ def load_data(path):
 
     df = pd.read_csv(path, keep_default_na=False, na_values=[""])
     # NA remains text,so North America is not missing
+
+    df["continent_name"] = df["continent"].map(CONTINENTS)
     return df
 
 
@@ -79,15 +90,33 @@ with st.container(border=True):
         data,
         x=x,
         y=y,
-        size="population",      
-        size_max=40,            # size of the biggest dot
-        hover_name="country",   # country name when hovering a dot
-        labels={x: GEO_VARS[x], y: SOCIO_VARS[y], "population": "Population"},
+        color="continent_name",  
+        size="population",       
+        size_max=40,             
+        hover_name="country",    
+        labels={x: GEO_VARS[x], y: SOCIO_VARS[y],
+                "population": "Population", "continent_name": "Continent"},
     )
-    st.plotly_chart(fig)
-    st.caption("Dot size = population")
 
-    print(df.columns.tolist())
+    # red trend line (only if there are enough countries)
+    if len(data) >= 50:
+        # find the straight line that fits the dots best: y = slope * x + intercept
+        slope, intercept = np.polyfit(data[x], data[y], 1)
+
+        # the line only needs two points: leftmost and rightmost x
+        x_line = np.array([data[x].min(), data[x].max()])
+        y_line = slope * x_line + intercept
+
+        fig.add_scatter(
+            x=x_line,
+            y=y_line,
+            mode="lines",                           # a line, not dots
+            line=dict(color="red", dash="dash"),    # red and dashed
+            name="Trend",                           # name in the legend
+        )
+
+    st.plotly_chart(fig)
+    st.caption("Dot size = population · dashed red line = trend")
 
 # container 3: correlation
 with st.container(border=True):
