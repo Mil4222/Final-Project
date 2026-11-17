@@ -7,7 +7,7 @@ import streamlit as st
 
 # settings for the page
 st.set_page_config(
-    page_title="Beyond GDP",  # text shown in the browser tab
+    page_title="World Wise",  # text shown in the browser tab
     page_icon="🌍",  # icon shown in the browser tab
     layout="wide",  # full screen width
 )
