@@ -24,8 +24,9 @@ SOCIO_VARS = {
     "life_expectancy": "Life expectancy (years)",
     "unemployment_rate": "Unemployment rate (%)",
     "urban_pop_perc": "Urban population (% of total)",
-    "median_age": "Median age (years)",
-    "secondary_edu_years": "Secondary education (years)"}
+    "median_age": "Median age (years)",}
+
+# removed secondary edu years: the variable the described the offical length, not how eduacated people are
 
 # after running the first trial:
 # skewed variables: few huge values, most small ones
