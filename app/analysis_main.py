@@ -26,11 +26,11 @@ SOCIO_VARS = {
     "urban_pop_perc": "Urban population (% of total)",
     "median_age": "Median age (years)",}
 
-# removed secondary edu years: the variable the described the offical length, not how eduacated people are
+# removed secondary edu years: the variable described the offical length, not how eduacated people are
 
 # after running the first trial:
-# skewed variables: few huge values, most small ones
-# -> shown on a log scale so all countries get space
+# there were some skewed variables: few huge values, most small ones
+# solution: show on a log scale so all countries get space
 
 LOG_VARS = ["area_sq_km", "pop_density", "gdp_capita"]
 
