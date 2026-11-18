@@ -2,10 +2,17 @@ import pandas as pd
 import streamlit as st
 from pathlib import Path
 
-# Import data -> NOT FINAL DATA, JUST PLACEHOLDER!
+# run game: streamlit run "app/guess_game.py"
+# Import data 
 project_root = Path(__file__).resolve().parents[1]
 data_path = project_root / "data" / "data_clean_final" / "final_clean.csv"
-df = pd.read_csv(data_path, keep_default_na=False, na_values=[""])
+
+@st.cache_data
+def load_data(path):
+    df = pd.read_csv(path, keep_default_na=False, na_values=[""])
+    return df
+
+df = load_data(data_path)
 
 # I have to change because we are doing 2 modes: normal mode, hard mode
 normal_vars = ["country", "continent", "population", "gdp_capita", "area_sq_km", "hdi"]
@@ -87,21 +94,28 @@ if not st.session_state.guessed_correctly:
                     else:
                         continent_result = "wrong"
 
-                    # Compare area (in square kilometers) -> 10% tolerance
+                    # Compare area (in square kilometers) -> 10% tolerance for correct
                     difference = abs(guess["area_sq_km"] - st.session_state.target["area_sq_km"])
                     tolerance = st.session_state.target["area_sq_km"] * 0.10
+                    # try to add also "close" results
+                    close_tolerance = st.session_state.target["area_sq_km"] * 0.20
                     if difference <= tolerance:
                         area_result = "correct"
+                    elif difference <= close_tolerance:
+                        area_result = "close"
                     elif guess["area_sq_km"] < st.session_state.target["area_sq_km"]:
                         area_result = "higher"
                     else:
                         area_result = "lower"
 
-                    # Compare GDP per capita -> 10% tolerance
+                    # Compare GDP per capita -> 10% tolerance for correct
                     difference = abs(guess["gdp_capita"] - st.session_state.target["gdp_capita"])
                     tolerance = st.session_state.target["gdp_capita"] * 0.10
+                    close_tolerance = st.session_state.target["gdp_capita"] * 0.20
                     if difference <= tolerance:
                         gdp_result = "correct"
+                    elif difference <= close_tolerance:
+                        gdp_result = "close"
                     elif guess["gdp_capita"] < st.session_state.target["gdp_capita"]:
                         gdp_result = "higher"
                     else:
@@ -110,8 +124,11 @@ if not st.session_state.guessed_correctly:
                     # Compare population -> 10% tolerance
                     difference = abs(guess["population"] - st.session_state.target["population"])
                     tolerance = st.session_state.target["population"] * 0.10
+                    close_tolerance = st.session_state.target["population"] * 0.20
                     if difference <= tolerance:
                         pop_result = "correct"
+                    elif difference <= close_tolerance:
+                        pop_result = "close"
                     elif guess["population"] < st.session_state.target["population"]:
                         pop_result = "higher"
                     else:
@@ -120,8 +137,11 @@ if not st.session_state.guessed_correctly:
                     # Compare hdi -> 10% tolerance
                     difference = abs(guess["hdi"] - st.session_state.target["hdi"])
                     tolerance = st.session_state.target["hdi"] * 0.10
+                    close_tolerance = st.session_state.target["hdi"] * 0.20
                     if difference <= tolerance:
                         hdi_result = "correct"
+                    elif difference <= close_tolerance:
+                        hdi_result = "close"
                     elif guess["hdi"] < st.session_state.target["hdi"]:
                         hdi_result = "higher"
                     else:
@@ -131,7 +151,10 @@ if not st.session_state.guessed_correctly:
                     st.session_state.history.append({
                         "Attempt": st.session_state.attempts,
                         "Country": guess["country"],
-                        "Continent": continent_result,
+                        "Continent": {
+                            "value": guess["continent"],
+                            "result": continent_result
+                        },
                         "Area": {
                             "value": guess["area_sq_km"],
                             "result": area_result
@@ -154,40 +177,52 @@ if not st.session_state.guessed_correctly:
                 else:
 
                     # compare population density -> 10% tolerance
-                    difference = abs(guess["pop_density"] - st.session_state.target["pop_density"]) # take absolute value of the difference
-                    tolerance = st.session_state.target["pop_density"] * 0.10 # 10% of the target value
+                    difference = abs(guess["pop_density"] - st.session_state.target["pop_density"]) 
+                    tolerance = st.session_state.target["pop_density"] * 0.10
+                    close_tolerance = st.session_state.target["pop_density"] * 0.20
                     if difference <= tolerance:
                         density_result = "correct"
+                    elif difference <= close_tolerance:
+                        density_result = "close"
                     elif guess["pop_density"] < st.session_state.target["pop_density"]:
                         density_result = "higher"
                     else:
                         density_result = "lower"
 
                     # Compare median age -> 10% tolerance
-                    difference = abs(guess["median_age"] - st.session_state.target["median_age"]) # take absolute value of the difference
-                    tolerance = st.session_state.target["median_age"] * 0.10 # 10% of the target value
+                    difference = abs(guess["median_age"] - st.session_state.target["median_age"]) 
+                    tolerance = st.session_state.target["median_age"] * 0.10 
+                    close_tolerance = st.session_state.target["median_age"] * 0.20
                     if difference <= tolerance:
                         age_result = "correct"
+                    elif difference <= close_tolerance:
+                        age_result = "close"
                     elif guess["median_age"] < st.session_state.target["median_age"]:
                         age_result = "higher"
                     else:
                         age_result = "lower"
 
                     # Compare pollution -> 10% tolerance
-                    difference = abs(guess["pm2.5_pollution"] - st.session_state.target["pm2.5_pollution"]) # take absolute value of the difference
-                    tolerance = st.session_state.target["pm2.5_pollution"] * 0.10 # 10% of the target value
+                    difference = abs(guess["pm2.5_pollution"] - st.session_state.target["pm2.5_pollution"]) 
+                    tolerance = st.session_state.target["pm2.5_pollution"] * 0.10 
+                    close_tolerance = st.session_state.target["pm2.5_pollution"] * 0.20
                     if difference <= tolerance:
                         pollution_result = "correct"
+                    elif difference <= close_tolerance:
+                        pollution_result = "close"
                     elif guess["pm2.5_pollution"] < st.session_state.target["pm2.5_pollution"]:
                         pollution_result = "higher"
                     else:
                         pollution_result = "lower"
 
                     # compare urban population (as % of total population)
-                    difference = abs(guess["urban_pop_perc"] - st.session_state.target["urban_pop_perc"]) # take absolute value of the difference
+                    difference = abs(guess["urban_pop_perc"] - st.session_state.target["urban_pop_perc"]) 
                     tolerance = 3 # percentage points for tolerance
+                    close_tolerance = 5
                     if difference <= tolerance:
                         urban_result = "correct"
+                    elif difference <= close_tolerance:
+                        urban_result = "close"
                     elif guess["urban_pop_perc"] < st.session_state.target["urban_pop_perc"]:
                         urban_result = "higher"
                     else:
@@ -254,6 +289,39 @@ if not st.session_state.guessed_correctly:
                     st.write("try again")
 
 # display game history table (only after each guess) -> problem: the game should not look like this
+
+# use html to color each card
+def result_card(value, result):
+    if result == "correct":
+        background = "#bbedb6"
+    elif result in ["wrong", "higher", "lower"]:
+        background = "#f7a49c"
+    else:
+        background = "#fcee9f"
+
+    st.markdown(
+        f"""
+        <div style="
+            background-color: {background};
+            color: #222222;
+            padding: 15px;
+            border-radius: 10px;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+        ">
+            <strong>{value}</strong>
+            <br>
+            {result}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 # now i will use the game history to create the UI -> use st.columns to create one row for each guess
 # add also column headers
 # add container for the game history/clues
@@ -279,16 +347,16 @@ if st.session_state.history:
 
                 with cols[0].container(border=True):
                     st.write(row["Country"])
-                with cols[1].container(border=True):
-                    st.write(row["Continent"])
-                with cols[2].container(border=True):
-                    st.write(f'{row["Area"]["value"]:.0f} km²\n{row["Area"]["result"]}')
-                with cols[3].container(border=True):
-                    st.write(f'{row["Population"]["value"]/1_000_000:.1f} M\n{row["Population"]["result"]}')
-                with cols[4].container(border=True):
-                    st.write(f'{row["GDP per capita"]["value"]:,.0f}$\n{row["GDP per capita"]["result"]}')
-                with cols[5].container(border=True):
-                    st.write(f'{row["HDI"]["value"]:.3f}\n{row["HDI"]["result"]}')
+                with cols[1]:
+                    result_card(row["Continent"]["value"], row["Continent"]["result"])
+                with cols[2]:
+                    result_card(f'{row["Area"]["value"]:,.0f} km²', row["Area"]["result"])
+                with cols[3]:
+                    result_card(f'{row["Population"]["value"]/1_000_000:.1f} M', row["Population"]["result"])
+                with cols[4]:
+                    result_card(f'${row["GDP per capita"]["value"]:,.0f}', row["GDP per capita"]["result"])
+                with cols[5]:
+                    result_card(f'{row["HDI"]["value"]:.3f}', row["HDI"]["result"])
 
         else:
         
@@ -307,14 +375,14 @@ if st.session_state.history:
         
                 with cols[0].container(border=True):
                     st.write(row["Country"])
-                with cols[1].container(border=True):
-                    st.write(f'{row["Median age"]["value"]:.1f} years\n{row["Median age"]["result"]}')
-                with cols[2].container(border=True):
-                    st.write(f'{row["Population density"]["value"]:,.1f}/km²\n{row["Population density"]["result"]}')
-                with cols[3].container(border=True):
-                    st.write(f'{row["PM2.5 pollution"]["value"]:.1f} PM2.5 (µg/m³)\n{row["PM2.5 pollution"]["result"]}')
-                with cols[4].container(border=True):
-                    st.write(f'{row["Urban population"]["value"]:.1f}%\n{row["Urban population"]["result"]}')
+                with cols[1]:
+                    result_card(f'{row["Median age"]["value"]:.1f} years', row["Median age"]["result"])
+                with cols[2]:
+                    result_card(f'{row["Population density"]["value"]:,.1f}/km²', row["Population density"]["result"])
+                with cols[3]:
+                    result_card(f'{row["PM2.5 pollution"]["value"]:.1f} PM2.5 (µg/m³)', row["PM2.5 pollution"]["result"])
+                with cols[4]:
+                    result_card(f'{row["Urban population"]["value"]:.1f}%', row["Urban population"]["result"])
                 with cols[5].container(border=True):
                     st.write(row["Direction"])
         
