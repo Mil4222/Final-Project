@@ -25,7 +25,7 @@ SOCIO_VARS = {
     "unemployment_rate": "Unemployment rate (%)",
     "urban_pop_perc": "Urban population (% of total)",
     "median_age": "Median age (years)",
-    "secondary_education":"years of mandatory secondary schooling (years)"}
+    "secondary_edu_years":"years of mandatory secondary schooling (years)"}
 
 # removed secondary edu years: the variable described the offical length, not how eduacated people are
 
