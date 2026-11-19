@@ -11,7 +11,7 @@ from pathlib import Path
 import plotly.express as px
 import streamlit as st
 
-# test line: shows whether this file is executed at all
+# !test line: shows whether this file is executed at all
 st.write("line_plot.py is running")
 
 # -----------------
@@ -32,6 +32,10 @@ DATA_PATH = Path(__file__).parent.parent / "data" / \
 
 VARIABLES = {
     "life_expectancy": "Life expectancy (years)",  # life expectancy at birth
+    # ! income per person in dollars, not inflation adjusted
+    "gdp_capita": "GDP per capita (current US$)",
+    # ! duration by law ?
+    "secondary_edu_years": "Duration of secondary education (years)",
     "hdi": "Human Development Index (0–1)",  # UNDP HDI
     # share of the labour force without a job
     "unemployment_rate": "Unemployment rate (%)",
