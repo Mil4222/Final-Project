@@ -1,4 +1,5 @@
 # do we want to install watchdog?
+# streamlit run app/page_skeleton.py
 # page explanation: x-axis is a year slider.
 # y-axis will be variables users can choose from. historical tren per country
 # ========================================================================================================================
@@ -35,7 +36,7 @@ VARIABLES = {
     # ! income per person in dollars, not inflation adjusted
     "gdp_capita": "GDP per capita (current US$)",
     # ! duration by law ?
-    "secondary_edu_years": "Duration of secondary education (years)",
+    "secondary_edu_years": "Secondary Schooling (years)",
     "hdi": "Human Development Index (0–1)",  # UNDP HDI
     # share of the labour force without a job
     "unemployment_rate": "Unemployment rate (%)",
