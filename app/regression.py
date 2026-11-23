@@ -32,14 +32,17 @@ st.set_page_config(layout="wide")
 df = df.rename(columns={"pm2.5_pollution": "pm25_pollution"})
 
 # create log variables (i checked -> no zeros and negative)
-df["log_gdp_capita"] = np.log(df["gdp_capita"])
+df["log_current_gdp_capita"] = np.log(df["current_gdp_capita"])
+df["log_constant_gdp_capita"] = np.log(df["constant_gdp_capita"])
 df["log_area_sq_km"] = np.log(df["area_sq_km"])
 df["log_population"] = np.log(df["population"])
 df["log_pop_density"] = np.log(df["pop_density"])
 
+
 # possible variables cross
 cross_vars = {
-    "log_gdp_capita": "GDP per capita (current $US)",
+    "log_current_gdp_capita": "GDP per capita (current $US)",
+    "log_constant_gdp_capita": "GDP per capita (constant 2015 $US)",
     "distance_equator": "Distance from the equator",
     "hdi": "Human Developement Index (HDI)",
     "urban_pop_perc": "Urban population (%)",
@@ -51,12 +54,14 @@ cross_vars = {
     "secondary_edu_years": "Secondary education (years)",
     "life_expectancy": "Life expectancy (years)",
     "unemployment_rate": "Unemployment rate (%)",
-    "log_area_sq_km": "Total area (km²)"
+    "log_area_sq_km": "Total area (km²)",
+    "mean_edu_year": "Average years of schooling among adults"
 }
 
 # possible variables panel
 panel_vars = {
-    "log_gdp_capita": "GDP per capita (current $US)",
+    "log_current_gdp_capita": "GDP per capita (current $US)",
+    "log_constant_gdp_capita": "GDP per capita (constant 2015 $US)",
     "hdi": "Human Developement Index (HDI)",
     "urban_pop_perc": "Urban population (%)",
     "log_population": "Total population",
@@ -67,6 +72,7 @@ panel_vars = {
     "secondary_edu_years": "Secondary education (years)",
     "life_expectancy": "Life expectancy (years)",
     "unemployment_rate": "Unemployment rate (%)",
+    "mean_edu_year": "Average years of schooling among adults"
 }
 
 # controls just placeholder because i'm not sure
@@ -77,8 +83,9 @@ controls = {
     "median_age": "Median age (years)",
     "secondary_edu_years": "Secondary education (years)",
     "unemployment_rate": "Unemployment rate (%)",
-    "gdp_capita": "GDP per capita (current $US)",
-    "continent": "Continent"
+    "log_constant_gdp_capita": "GDP per capita (constant 2015 $US)",
+    "continent": "Continent",
+    "mean_edu_year": "Average years of schooling among adults"
 }
 
 # i need normal names for the interpretation card
@@ -89,10 +96,12 @@ interpret_names = {
     "pm25_pollution": "PM2.5 pollution",
     "life_expectancy": "life expectancy",
     "median_age": "median age",
-    "log_gdp_capita": "GDP per capita",
+    "log_constant_gdp_capita": "GDP per capita",
     "log_area_sq_km": "land area",
     "log_pop_density": "population density",
-    "unemployment_rate": "unemployment rate"
+    "unemployment_rate": "unemployment rate",
+    "mean_edu_year": "average years of schooling",
+    "forest_ratio": "forest coverage"
 }
 
 # i also need normal units names for the interpretation
@@ -101,38 +110,31 @@ units = {
     "urban_pop_perc": "percentage point",
     "pm25_pollution": "µg/m³",
     "life_expectancy": "year",
+    "mean_edu_year": "year",
     "median_age": "year",
-    "unemployment_rate": "percentage point"
+    "unemployment_rate": "percentage point",
+    "forest_ratio": "percentage point"
 }
 
 # possible questions (start with 5 for each model) 
 # i decided to add specific controls for each question (now just placeholder)
-# cross: use more geo variables that don't change over time 
+# cross: use more geo variables that don't change over time (or change little)
+# still some doubts about controls!! 
+# would be nice to add a continent control for geographic questions (only for cross -> it's time invariant)
 cross_questions = {
     "Is distance from the equator associated with HDI?": {"y": "hdi", "x": "distance_equator", "controls": ["log_population", "log_area_sq_km"]},
-    # keep: connects geography with developement. controls: compare countries with similar size and pop -> continent FE?
-    "Is urbanization associated with more GDP per capita?": {"y": "log_gdp_capita", "x": "urban_pop_perc", "controls": [["distance_equator", "log_population", "log_area_sq_km"]]},
-    # keep: intuitive, important for developement. controls: compare countries with similar size and pop
-    "Is air pollution associated with life expectancy?": {"y": "life_expectancy", "x": "pm25_pollution", "controls": ["log_gdp_capita", "urban_pop_perc", "forest_ratio"]},
-    # Keep: intuitive, interesting, BUT super relevant for geo-socio, but only health. controls: important to control for how rich/urban a country is
-    "Is population density related to GDP per capita?": {"y": "log_gdp_capita", "x": "log_pop_density", "controls": ["distance_equator", "urban_pop_perc", "log_population"]},
-    # keep: geo-socio focused
-    "Is distance from the equator associated with median age?": {"y": "median_age", "x": "distance_equator", "controls": ["log_gdp_capita", "urban_pop_perc", "log_population"]}
-    # keep: strong association. controls: pop and area and gdp -> does this strong correlation perisists among similar incomes?
+    "Is forest coverage associated with air pollution?": {"y": "pm25_pollution", "x": "forest_ratio", "controls": ["distance_equator", "log_population", "log_area_sq_km"]},
+    "Is air pollution associated with life expectancy?": {"y": "life_expectancy", "x": "pm25_pollution", "controls": ["log_constant_gdp_capita", "urban_pop_perc", "forest_ratio"]},
+    "Is population density related to GDP per capita?": {"y": "log_constant_gdp_capita", "x": "log_pop_density", "controls": ["distance_equator", "urban_pop_perc", "log_population"]},
+    "Is distance from the equator associated with median age?": {"y": "median_age", "x": "distance_equator", "controls": ["log_constant_gdp_capita", "urban_pop_perc", "log_population"]}
 }
 
 panel_questions = {
     "Is urbanization associated with HDI over time?": {"y": "hdi", "x": "urban_pop_perc", "controls": ["pm25_pollution", "log_population", "median_age"]},
-    # keep: both change over time within a country and it's interesting. controls: do not use gdp!
-    "Is GDP per capita associated with life expectancy over time?": {"y": "life_expectancy", "x": "log_gdp_capita", "controls": ["urban_pop_perc", "pm25_pollution"]},
-    # idk: need constant gdp per capita
-    "Is pollution associated with life expectancy over time?": {"y": "life_expectancy", "x": "pm25_pollution","controls": ["urban_pop_perc", "log_population"]},
-    # keep: nice to have the same question in both models
-    "Is urbanization associated with GDP per capita over time?": {"y": "log_gdp_capita", "x": "urban_pop_perc", "controls": ["log_gdp_capita", "urban_pop_perc"]},
-    # idk: need the constant gdp per capita
-    "Is forest coverage associated with air pollution over time?": {"y": "pm25_pollution", "x": "forest_coverage"}, 
-    # maybe use this 
-    "Is urbanization associated with unemployment over time?": {"y": "unemployment_rate", "x": "urban_pop_perc", "controls": ["log_gdp_capita", "log_pop_density"]}
+    "Is GDP per capita associated with life expectancy over time?": {"y": "life_expectancy", "x": "log_constant_gdp_capita", "controls": ["urban_pop_perc", "pm25_pollution", "mean_edu_year"]},
+    "Is pollution associated with life expectancy over time?": {"y": "life_expectancy", "x": "pm25_pollution","controls": ["log_constant_gdp_capita", "urban_pop_perc", "mean_edu_year"]},
+    "Is education associated with GDP per capita over time?": {"y": "log_constant_gdp_capita", "x": "mean_edu_year", "controls": ["log_population", "urban_pop_perc"]},
+    "Is urbanization associated with unemployment over time?": {"y": "unemployment_rate", "x": "urban_pop_perc", "controls": ["log_constant_gdp_capita", "log_pop_density"]}
 }
 
 # title
@@ -140,7 +142,7 @@ with st.container(border=True):
     st.title("Regression models")
     st.write("Change the paramenters of the regression model to learn more about the data")
 
-# model choice (cross-country/panel)
+# model choice (cross-sectional/panel)
 model_choice = st.segmented_control(
     "Regression model type", 
     options=["Cross-sectional", "Panel"], 
@@ -180,13 +182,20 @@ if model_choice == "Cross-sectional":
             selected_controls = st.multiselect("Add controls", options=available_controls, format_func=lambda x: cross_vars[x], default=[])
 
             # keep only needed variables and drop missing observations (some countries have no observations in some years)
-            needed_vars = [y_var, x_var] + selected_controls + ["country", "year"]
+            needed_vars = [y_var, x_var] + selected_controls + ["country", "year", "continent"]
             model_data = model_data[needed_vars].dropna().copy()
+
+            continent_control = st.checkbox(
+                "Control for continent",
+                help="Compares countries after accounting for broad differences between continents."
+            )
 
             # formula (display for now) -> change it to add controls
             formula = f"{y_var} ~ {x_var}"
             if selected_controls:
                 formula += " + " + " + ".join(selected_controls)
+            if continent_control: 
+                formula += " + C(continent)"
 
         with cols[1]:
             # standard error choice and run regression
@@ -195,9 +204,9 @@ if model_choice == "Cross-sectional":
                 ["Classical", "Robust (HC1)"],
                 help="""
             **Classical:** Assumes constant error variance and independent errors.
-
+        
             **Robust (HC1):** Allows the error variance to differ across observations.
-            """)
+                    """)
             if se_choice == "Classical":
                 model = smf.ols(formula=formula, data=model_data).fit()
             else:
