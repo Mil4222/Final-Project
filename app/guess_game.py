@@ -21,7 +21,7 @@ df["hemi"] = df["hemi"].replace({True: "Northern", False: "Southern"})
 df["continent"] =df["continent"].str.replace({"NA": "North America", "SA": "South America", "OC": "Oceania", "EU": "Europe", "AS": "Asia", "AF": "Africa"})
 
 # I have to change because we are doing 2 modes: normal mode, hard mode
-normal_vars = ["country", "hemi", "population", "gdp_capita", "area_sq_km", "capital_latitude", "capital_longitude"]
+normal_vars = ["country", "continent", "population", "constant_gdp_capita", "area_sq_km", "capital_latitude", "capital_longitude"]
 normal_game = (df[df["year"] == 2023][normal_vars].dropna().copy())
 
 hard_vars = ["country", "continent", "hdi", "pm2.5_pollution", "pop_density", "urban_pop_perc"]
@@ -119,11 +119,17 @@ if not st.session_state.guessed_correctly:
                 # compare normal mode
                 if mode == "Normal":
 
-                    # compare emispehere 
-                    if guess["hemi"] == st.session_state.target["hemi"]:
-                        hemi_result = "correct"
+                    # compare emispehere --> normal mode still too difficult
+                    # if guess["hemi"] == st.session_state.target["hemi"]:
+                        # hemi_result = "correct"
+                    # else:
+                       #  hemi_result = "wrong"
+                    
+                    # compare continent -> use continent instead
+                    if guess["continent"] == st.session_state.target["continent"]:
+                        continent_result = "correct"
                     else:
-                        hemi_result = "wrong"
+                        continent_result = "wrong"
 
                     # Compare area (in square kilometers) -> 5% tolerance for correct
                     difference = abs(guess["area_sq_km"] - st.session_state.target["area_sq_km"])
@@ -140,14 +146,14 @@ if not st.session_state.guessed_correctly:
                         area_result = "lower"
 
                     # Compare GDP per capita -> 5% tolerance for correct
-                    difference = abs(guess["gdp_capita"] - st.session_state.target["gdp_capita"])
-                    tolerance = st.session_state.target["gdp_capita"] * 0.05
-                    close_tolerance = st.session_state.target["gdp_capita"] * 0.10
+                    difference = abs(guess["constant_gdp_capita"] - st.session_state.target["constant_gdp_capita"])
+                    tolerance = st.session_state.target["constant_gdp_capita"] * 0.05
+                    close_tolerance = st.session_state.target["constant_gdp_capita"] * 0.10
                     if difference <= tolerance:
                         gdp_result = "correct"
                     elif difference <= close_tolerance:
                         gdp_result = "close"
-                    elif guess["gdp_capita"] < st.session_state.target["gdp_capita"]:
+                    elif guess["constant_gdp_capita"] < st.session_state.target["constant_gdp_capita"]:
                         gdp_result = "higher"
                     else:
                         gdp_result = "lower"
@@ -199,9 +205,9 @@ if not st.session_state.guessed_correctly:
                     st.session_state.history.append({
                         "Attempt": st.session_state.attempts,
                         "Country": guess["country"],
-                        "Hemisphere": {
-                            "value": guess["hemi"],
-                            "result": hemi_result
+                        "Continent": {
+                            "value": guess["continent"],
+                            "result": continent_result
                         },
                         "Area": {
                             "value": guess["area_sq_km"],
@@ -212,7 +218,7 @@ if not st.session_state.guessed_correctly:
                             "result": pop_result
                         },
                         "GDP per capita": {
-                            "value": guess["gdp_capita"],
+                            "value": guess["constant_gdp_capita"],
                             "result": gdp_result
                         },
                         "Direction": direction
@@ -357,7 +363,7 @@ if st.session_state.history:
         if mode == "Normal":
 
             # headers (normal mode) -> use html to center the text
-            headers_normal = ["Country", "Hemisphere", "Area", "Population", "GDP per capita", "Direction"]
+            headers_normal = ["Country", "Continent", "Area", "Population", "GDP per capita", "Direction"]
             header_cols = st.columns(6)
             for col, header in zip(header_cols, headers_normal):
                 col.markdown(f"<div style='text-align: center;'><strong>{header}</strong></div>", unsafe_allow_html=True)
@@ -369,7 +375,7 @@ if st.session_state.history:
                 with cols[0].container(border=True):
                     st.write(row["Country"])
                 with cols[1]:
-                    result_card(row["Hemisphere"]["value"], row["Hemisphere"]["result"])
+                    result_card(row["Continent"]["value"], row["Continent"]["result"])
                 with cols[2]:
                     result_card(f'{row["Area"]["value"]:,.0f} km²', row["Area"]["result"])
                 with cols[3]:
@@ -379,8 +385,8 @@ if st.session_state.history:
                 with cols[5].container(border=True):
                     st.write(row["Direction"])
 
-                st.space("xsmall")
-
+                st.space("xsmall") # space between cards (vertically)
+                
         else:
 
             # headers (hard mode) -> use html to center the text
@@ -405,6 +411,8 @@ if st.session_state.history:
                     result_card(f'{row["Urban population"]["value"]:.1f}%', row["Urban population"]["result"])
                 with cols[5]:
                     result_card(f'{row["HDI"]["value"]:.3f}', row["HDI"]["result"])
+
+                st.space("xsmall")
         
 # reset button 
 if reset_clicked:
