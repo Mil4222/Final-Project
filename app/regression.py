@@ -55,7 +55,8 @@ cross_vars = {
     "life_expectancy": "Life expectancy (years)",
     "unemployment_rate": "Unemployment rate (%)",
     "log_area_sq_km": "Total area (km²)",
-    "mean_edu_year": "Average years of schooling among adults"
+    "mean_edu_year": "Average years of schooling among adults",
+    "continent": "Continent"
 }
 
 # possible variables panel
@@ -101,7 +102,8 @@ interpret_names = {
     "log_pop_density": "population density",
     "unemployment_rate": "unemployment rate",
     "mean_edu_year": "average years of schooling",
-    "forest_ratio": "forest coverage"
+    "forest_ratio": "forest coverage",
+    "continent": "Continent"
 }
 
 # i also need normal units names for the interpretation
@@ -122,11 +124,11 @@ units = {
 # still some doubts about controls!! 
 # would be nice to add a continent control for geographic questions (only for cross -> it's time invariant)
 cross_questions = {
-    "Is distance from the equator associated with HDI?": {"y": "hdi", "x": "distance_equator", "controls": ["log_population", "log_area_sq_km"]},
-    "Is forest coverage associated with air pollution?": {"y": "pm25_pollution", "x": "forest_ratio", "controls": ["distance_equator", "log_population", "log_area_sq_km"]},
-    "Is air pollution associated with life expectancy?": {"y": "life_expectancy", "x": "pm25_pollution", "controls": ["log_constant_gdp_capita", "urban_pop_perc", "forest_ratio"]},
-    "Is population density related to GDP per capita?": {"y": "log_constant_gdp_capita", "x": "log_pop_density", "controls": ["distance_equator", "urban_pop_perc", "log_population"]},
-    "Is distance from the equator associated with median age?": {"y": "median_age", "x": "distance_equator", "controls": ["log_constant_gdp_capita", "urban_pop_perc", "log_population"]}
+    "Is distance from the equator associated with HDI?": {"y": "hdi", "x": "distance_equator", "controls": ["log_population", "log_area_sq_km", "continent"]},
+    "Is forest coverage associated with air pollution?": {"y": "pm25_pollution", "x": "forest_ratio", "controls": ["distance_equator", "log_population", "log_area_sq_km", "continent"]},
+    "Is air pollution associated with life expectancy?": {"y": "life_expectancy", "x": "pm25_pollution", "controls": ["log_constant_gdp_capita", "urban_pop_perc", "forest_ratio", "continent"]},
+    "Is population density related to GDP per capita?": {"y": "log_constant_gdp_capita", "x": "log_pop_density", "controls": ["distance_equator", "urban_pop_perc", "log_population", "continent"]},
+    "Is distance from the equator associated with median age?": {"y": "median_age", "x": "distance_equator", "controls": ["log_constant_gdp_capita", "urban_pop_perc", "log_population", "continent"]}
 }
 
 panel_questions = {
@@ -182,20 +184,17 @@ if model_choice == "Cross-sectional":
             selected_controls = st.multiselect("Add controls", options=available_controls, format_func=lambda x: cross_vars[x], default=[])
 
             # keep only needed variables and drop missing observations (some countries have no observations in some years)
-            needed_vars = [y_var, x_var] + selected_controls + ["country", "year", "continent"]
+            needed_vars = [y_var, x_var] + selected_controls + ["country", "year"]
             model_data = model_data[needed_vars].dropna().copy()
 
-            continent_control = st.checkbox(
-                "Control for continent",
-                help="Compares countries after accounting for broad differences between continents."
-            )
-
-            # formula (display for now) -> change it to add controls
+            # formula (display for now) -> change it to add controls and to add continent as a control
             formula = f"{y_var} ~ {x_var}"
             if selected_controls:
-                formula += " + " + " + ".join(selected_controls)
-            if continent_control: 
-                formula += " + C(continent)"
+                for control in selected_controls:
+                    if control == "continent":
+                        formula += " + C(continent)"
+                    else: 
+                        formula += f" + {control}"
 
         with cols[1]:
             # standard error choice and run regression
