@@ -63,13 +63,13 @@ VARIABLES = {
 # ----------------------------------------------
 
 CONTINENTS = {
-    "AF": "Africa",  # code AF
-    "AS": "Asia",  # code AS
-    "EU": "Europe",  # code EU
+    "AF": "Africa",
+    "AS": "Asia",
+    "EU": "Europe",
     # code NA (careful: pandas would read "NA" as missing, see load_data)
     "NA": "North America",
-    "SA": "South America",  # code SA
-    "OC": "Oceania",  # code OC
+    "SA": "South America",
+    "OC": "Oceania",
 }
 
 # ---------------------------------
@@ -92,19 +92,18 @@ def load_data(path):
     # NA remains text, so North America and Namibia don't evaluate to false, empty values remain NA
     df["continent_name"] = df["continent"].map(CONTINENTS)
     # added column with full continent names
-    return df  # give table back
+    return df
 
 
-df = load_data(DATA_PATH)  # load data (from cache after the first time)
+df = load_data(DATA_PATH)
 
 # ----------------
 # page title
 # ----------------
 
-with st.container(border=True):  # framed box for title
-    st.title("Trends over time")  # page title
-    # subtitle
-    st.caption(
+with st.container(border=False):  # NO framed box for title
+    st.title("Trends over time")
+    st.caption(  # subtitle
         "Choose a variable, a country and a time span to see how they developed.")
 
 # ----------------------
@@ -115,7 +114,7 @@ with st.container(border=True):  # framed box for title
 years = sorted(df["year"].unique())
 countries = sorted(df["country"].unique())  # all country names, A to Z
 
-with st.container(border=True):  # framed box that holds all controls
+with st.container(border=False):  # NON framed box that holds all controls
     st.subheader("Settings")  # heading inside the box
 
     # two columns; the right one is twice as wide
@@ -135,6 +134,11 @@ with st.container(border=True):  # framed box that holds all controls
             ["Countries", "Continent averages"],  # the two options
             horizontal=True,  # options next to each other
             key="line_mode",  # unique ID
+        )
+        show_world = st.checkbox(    # tick box for world average
+            "World Average ",
+            value=True,
+            key="line_world",
         )
 
     with col2:  # right column
@@ -158,7 +162,7 @@ with st.container(border=True):  # framed box that holds all controls
             disabled=(mode == "Continent averages"),
             key="line_countries",  # unique ID
         )
-        year_range = st.slider(  # slider with two handles = a time span for the x-axis
+        year_range = st.slider(  # slider with two both ends moveable
             "Years (x-axis)",  # label
             min_value=int(years[0]),  # earliest year in the data
             max_value=int(years[-1]),  # latest year in the data
@@ -188,6 +192,16 @@ else:  # one line per continent
     )
     line_col = "continent_name"  # draw one line per continent
 
+# ---------
+# create world verage
+# --------------
+if show_world:
+    world = in_range.groupby("year", as_index=False)[variable].mean()
+    world[line_col] = "World Average"
+    # part of other lines in chart
+    plot_data = pd.concat([plot_data, world], ignore_index=True)
+
+
 # do NOT drop missing values: Plotly breaks the line where a value is missing,
 # so gaps in the data become visible jumps in the chart
 # True if at least one value exists in the selection
@@ -197,7 +211,7 @@ has_data = plot_data[variable].notna().any()
 # container for the chart
 # -------------------------------
 
-with st.container(border=True):  # framed box for the chart
+with st.container(border=False):  # framed box for the chart
     # ! chart title: variable and time span, do we want to keep it like this
     st.subheader(f"{VARIABLES[variable]}, {start}–{end}")
 
@@ -224,9 +238,13 @@ with st.container(border=True):  # framed box for the chart
         )
         # make sure missing years stay as gaps (no bridging line)
         fig.update_traces(connectgaps=False)
-        # hovering shows all lines' values for that year at once
+        fig.update_traces(selector=dict(name="World Average"), line=dict(
+            color="black", dash="dash"))  # specification how world average line should look
+
+        # hovering shows all lines' values for that year at once; hover over plot and see all countries
         fig.update_layout(hovermode="x unified")
-        st.plotly_chart(fig, key="line_chart")  # show the chart on the page
+        # show the chart on the page, with built in features
+        st.plotly_chart(fig, key="line_chart")
 
         # rows with a real value (only used for the caption)
         valid = plot_data.dropna(subset=[variable])
