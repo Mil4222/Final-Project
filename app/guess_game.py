@@ -29,8 +29,53 @@ hard_game = (df[df["year"] == 2023][hard_vars].dropna().copy())
 
 st.set_page_config(layout="wide")
 
+# start with some style for the title container
+st.markdown(
+    """
+    <style>
+    .st-key-title_card {
+        background-color: #FFFDF7;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# style for guess container
+st.markdown(
+    """
+    <style>
+    .st-key-guess_card {
+        background-color: #FFFDF7;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# style for history card
+st.markdown(
+    """
+    <style>
+    .st-key-history_card {
+        background-color: #FFFDF7;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # add container/box for the title and instructions
-with st.container(border=True, width="stretch"):
+with st.container(border=True, width="stretch", key="title_card"):
     st.title("Guess the Country")
     st.write("guess the mystery country using the clues")
 
@@ -102,7 +147,7 @@ else:
 if not st.session_state.guessed_correctly:
 
     # add container for the input (man I should I have done this beforee :/)
-    with st.container(border=True, width="stretch"):
+    with st.container(border=True, width="stretch", key="guess_card"):
         st.subheader("make a guess!")
 
         # search bar
@@ -358,7 +403,7 @@ def result_card(value, result):
 
 if st.session_state.history:
 
-    with st.container(border=True, width="stretch"):
+    with st.container(border=True, width="stretch", key="history_card"):
 
         if mode == "Normal":
 
