@@ -1,6 +1,8 @@
 # main file of app, global settings, builds menu, no content
 
 # streamlit run app/page_skeleton.py     # start the app
+# https://worldwise.streamlit.app
+
 
 # import streamlit
 import streamlit as st
@@ -24,7 +26,8 @@ line_plot = st.Page("line_plot.py", title="Trends over time",
                     icon=":material/show_chart:")  # analysis subpage 2
 world_map = st.Page("map.py", title="Interactive map",
                     icon=":material/public:")  # map page
-models = st.Page("regression.py", title="Regression models", icon=":material/sync_alt:") # analysis subpage 3
+models = st.Page("regression.py", title="Regression models",
+                 icon=":material/sync_alt:")  # analysis subpage 3
 
 # sidebar menu
 navigation = st.navigation(
