@@ -25,7 +25,8 @@ SOCIO_VARS = {
     "unemployment_rate": "Unemployment rate (%)",
     "urban_pop_perc": "Urban population (% of total)",
     "median_age": "Median age (years)",
-    "secondary_edu_years":"Secondary schooling (years)"}
+    "mean_edu_year": "Mean years of schooling",
+    "pm2.5_pollution": "Air pollution, PM2.5 (µg/m³)" }
 
 # removed secondary edu years: the variable described the offical length, not how eduacated people are
 
@@ -172,41 +173,5 @@ with col_corr:
                 st.caption("Log scale used for skewed variables; "
                            "correlation is calculated on the logged values.")
 
-# card 2: biggest outliers = the 3 countries furthest from the trend line
-with col_out:
-    with st.container(border=True, height=300):
-        st.caption("BIGGEST OUTLIERS")
-        if len(data) < 50:
-            st.caption("Not enough countries for an outlier analysis.")
-        else:
-            top = data.sort_values("z", key=abs, ascending=False).head(3)
-            for _, row in top.iterrows():
-                side = "above" if row["z"] > 0 else "below"
-                st.markdown(f"**{row['country']}**: {row[y]:,.1f}, {side} "
-                            f"the trend (predicted {row['expected']:,.1f})")
 
-# card 3: selected country (stays until another dot is clicked)
-with col_card:
-    with st.container(border=True, height=300):
-        if country is None:
-            st.caption("SELECTED COUNTRY")
-            st.info("Click a dot on the chart (or search above).")
-        else:
-            st.caption(country.upper())
-            row = df[(df["year"] == year) & (df["country"] == country)]
-            if row.empty:
-                st.warning(f"No data for {country} in {year}.")
-            else:
-                row = row.iloc[0]
-                st.markdown(f"{GEO_VARS[x]}: **{row[x]:,.1f}**  \n"
-                            f"{SOCIO_VARS[y]}: **{row[y]:,.1f}**")
-                in_chart = data[data["country"] == country]
-                if len(data) >= 50 and not in_chart.empty:
-                    point = in_chart.iloc[0]
-                    side = "above" if point["z"] > 0 else "below"
-                    st.markdown(f"{country} sits **{side}** the trend: countries "
-                                f"like it are predicted to have "
-                                f"{point['expected']:,.1f}.")
-                elif in_chart.empty:
-                    st.caption("Not on the chart: some values are missing this year.")
  
