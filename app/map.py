@@ -22,6 +22,21 @@ def load_data(path):
 
 df = load_data(data_path)
 
+# style for settings container
+st.markdown(
+    """
+    <style>
+    .st-key-setting_card {
+        background-color: #FFFDF7;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # set variables
 map_vars = {
     "constant_gdp_capita": "GDP per capita (constant 2015 $US)",
@@ -38,13 +53,13 @@ map_vars = {
 }
 
 # title
-with st.container(border=True):
+with st.container(border=False):
     st.title("Map: explore the world")
     st.write("click on a country to see the data for that country")
 
 
 # settings (select variable and year)
-with st.container(border=True):
+with st.container(border=True, key="setting_card"):
     
     cols = st.columns(2)
     with cols[0]: 
@@ -59,14 +74,22 @@ with st.container(border=True):
     with cols[1]:
         # choose year
         year = st.slider("choose a year", min_value=int(df["year"].min()), max_value=int(df["year"].max()), value=2023, help="Many indicators only cover 1990-2023")
-        # data for each selected year
-        year_data = df[df["year"] == year].copy()
+        
+    # data for each selected year
+    year_data = df[df["year"] == year].copy()
+
+    # population in millions
+    year_data["population_m"] = year_data["population"] / 1_000_000
 
     # global rank
     year_data["world_rank"] = year_data[selected_var].rank(ascending=False, method="min")
 
     # continent rank
     year_data["continent_rank"] = (year_data.groupby("continent")[selected_var].rank(ascending=False, method="min"))
+
+    # number of countries in the ranking
+    world_tot = year_data[selected_var].notna().sum()
+    year_data["continent_tot"] = (year_data.groupby("continent")[selected_var].transform(lambda x: x.notna().sum()))
 
 # first version of the map (use px.choropleth -> match directly with the iso3 code)
 # now I just chose random colors for the gradient -> can change later)
@@ -76,7 +99,8 @@ fig = px.choropleth(
     locationmode="ISO-3", 
     hover_name="country", 
     color=selected_var, 
-    color_continuous_scale=["#e2f2af","#c0d186","#97b17b","#76a273","#5c825f", "#597A57", "#405C3E"])
+    color_continuous_scale=["#e2f2af","#c0d186","#97b17b","#76a273","#5c825f", "#597A57", "#405C3E"],
+    )
 
 # update the layout (random colors also here)
 fig.update_geos(
@@ -104,7 +128,7 @@ with st.container(border=False):
 
 # what can we improve:
 # - message for no data
-# - Better hover information (like country name and flag) and better value display
+# - Better hover information (like value with unit of measure) -> still figuring out how
 # - add country comparisons/rankings in the cards
 # - invert ranking for "bad" value like pollution
 # - log the color for population and density 

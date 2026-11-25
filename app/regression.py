@@ -28,6 +28,21 @@ df = load_data(data_path)
 
 st.set_page_config(layout="wide")
 
+# style for setting container
+st.markdown(
+    """
+    <style>
+    .st-key-setting_card {
+        background-color: #FFFDF7;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # rename pollution because it causes problems in the mddel
 df = df.rename(columns={"pm2.5_pollution": "pm25_pollution"})
 
@@ -140,7 +155,7 @@ panel_questions = {
 }
 
 # title
-with st.container(border=True):
+with st.container(border=False):
     st.title("Regression models")
     st.write("Change the paramenters of the regression model to learn more about the data")
 
@@ -157,7 +172,7 @@ model_choice = st.segmented_control(
 
 # cross-country model
 if model_choice == "Cross-sectional":
-    with st.container(border=True):
+    with st.container(border=True, key="setting_card"):
         st.subheader("Cross-country regression")
 
         cols = st.columns(2)

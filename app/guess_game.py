@@ -29,10 +29,10 @@ hard_game = (df[df["year"] == 2023][hard_vars].dropna().copy())
 
 st.set_page_config(layout="wide")
 
-# start with some style for the title container
+# style for title (don't like it)
 st.markdown(
     """
-    <style>
+   <style>
     .st-key-title_card {
         background-color: #FFFDF7;
         border-radius: 18px;
@@ -75,7 +75,7 @@ st.markdown(
 )
 
 # add container/box for the title and instructions
-with st.container(border=True, width="stretch", key="title_card"):
+with st.container(border=False, width="stretch"):
     st.title("Guess the Country")
     st.write("guess the mystery country using the clues")
 
