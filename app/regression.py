@@ -32,7 +32,21 @@ st.set_page_config(layout="wide")
 st.markdown(
     """
     <style>
-    .st-key-setting_card {
+    .st-key-setting_card_cross {
+        background-color: #FFFDF7;
+        border-radius: 18px;
+        padding: 20px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <style>
+    .st-key-setting_card_panel {
         background-color: #FFFDF7;
         border-radius: 18px;
         padding: 20px;
@@ -172,7 +186,7 @@ model_choice = st.segmented_control(
 
 # cross-country model
 if model_choice == "Cross-sectional":
-    with st.container(border=True, key="setting_card"):
+    with st.container(border=True, key="setting_card_cross"):
         st.subheader("Cross-country regression")
 
         cols = st.columns(2)
@@ -235,8 +249,7 @@ if model_choice == "Cross-sectional":
     
         cols = st.columns(2)
         with cols[0].container(border=True):
-            st.subheader("Model results")
-            st.write(f"Formula: {formula}")
+            st.subheader("Model results:")
             st.write("**Observations:**", obs)
             st.write("**Coefficient:**", f"{coef:.3f}")
             st.write("**Standard error:**", f"{se:.3f}")
@@ -245,6 +258,7 @@ if model_choice == "Cross-sectional":
             else:
                 st.write("**p-value:**", f"{p_value:.3f}")
             st.write("**R-squared:**", f"{r_squared:.3f}")
+            st.write(f"**Formula: {formula}**")
 
         with cols[1].container(border=True):
             x_name = interpret_names[x_var]
@@ -314,7 +328,7 @@ if model_choice == "Cross-sectional":
 
 # panel regression
 else:
-    with st.container(border=True):
+    with st.container(border=True, key="setting_card_panel"):
         st.subheader("Panel regression")
     
         cols = st.columns(2)
@@ -394,7 +408,6 @@ else:
         cols = st.columns(2)
         with cols[0].container(border=True):
             st.subheader("Model results")
-            st.write(f"Formula: {formula}")
             st.write("**Observations:**", obs)
             st.write("**Coefficient:**", f"{coef:.3f}")
             st.write("**Standard error:**", f"{se:.3f}")
@@ -403,6 +416,7 @@ else:
             else:
                 st.write("**p-value:**", f"{p_value:.3f}")
             st.write("**R-squared:**", f"{r_squared:.3f}")
+            st.write(f"**Formula: {formula}**")
         
             with cols[1].container(border=True):
                 x_name = interpret_names[x_var]
