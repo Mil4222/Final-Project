@@ -15,19 +15,7 @@ st.set_page_config(
 )
 
 
-# layout draft
-home = st.Page("home.py", title="Home", icon=":material/home:",
-               default=True)  # start page, opens first
-game = st.Page("guess_game.py", title="Guess the Country",
-               icon=":material/quiz:")  # the guessing game
-main_plot = st.Page("analysis_main.py", title="Main plot",
-                    icon=":material/scatter_plot:")  # analysis subpage 1
-line_plot = st.Page("line_plot.py", title="Trends over time",
-                    icon=":material/show_chart:")  # analysis subpage 2
-world_map = st.Page("map.py", title="Interactive map",
-                    icon=":material/public:")  # map page
-models = st.Page("regression.py", title="Regression models",
-                 icon=":material/sync_alt:")  # analysis subpage 3
+from pages import (home, game, main_plot, line_plot, models, world_map)
 
 # sidebar menu
 navigation = st.navigation(
