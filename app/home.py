@@ -48,7 +48,41 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-with st.container(border=True):
+# style container (make blurry, so that you can see the map underneath)
+st.markdown(
+    """
+    <style>
+    .st-key-setting_card_title {
+        background-color: rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+        text-align: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# style links
+st.markdown(
+    """
+    <style>
+    [class*="st-key-setting_links_"] {
+        background-color: rgba(255, 250, 190, 0.90);
+        border-radius: 16px;
+        padding: 12px;
+        border: none;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+with st.container(border=True, key="setting_card_title"):
 
     # here goes the subtitle
     st.subheader("**subtitle**")
@@ -57,15 +91,15 @@ with st.container(border=True):
     # so for the links I think I have to change the links 
     # I have to link to the st.page in skeleton -> create a new page just for the links
     cols = st.columns(5)
-    with cols[0]:
+    with cols[0].container(border=True, key="setting_links_1"):
         st.page_link(main_plot, label="scatter plot")
-    with cols[1]:
+    with cols[1].container(border=True, key="setting_links_2"):
         st.page_link(line_plot, label="line plot")
-    with cols[2]:
+    with cols[2].container(border=True, key="setting_links_3"):
         st.page_link(models, label="regression")
-    with cols[3]:
+    with cols[3].container(border=True, key="setting_links_4"):
         st.page_link(world_map, label="map")
-    with cols[4]:
+    with cols[4].container(border=True, key="setting_links_5"):
         st.page_link(game, label="game")
 
     # infos (hidden)
