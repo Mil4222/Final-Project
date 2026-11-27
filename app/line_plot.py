@@ -34,9 +34,9 @@ DATA_PATH = Path(__file__).parent.parent / "data" / \
 VARIABLES = {
     "life_expectancy": "Life expectancy (years)",  # life expectancy at birth
     # ! income per person in dollars, not inflation adjusted
-    "gdp_capita": "GDP per capita (current US$)",
+    "constant_gdp_capita": "GDP per capita (constant 2015 US$)",
     # ! duration by law ?
-    "secondary_edu_years": "Secondary Schooling (years)",
+    "mean_edu_year": "Average schooling (years)",
     "hdi": "Human Development Index (0–1)",  # UNDP HDI
     # share of the labour force without a job
     "unemployment_rate": "Unemployment rate (%)",
